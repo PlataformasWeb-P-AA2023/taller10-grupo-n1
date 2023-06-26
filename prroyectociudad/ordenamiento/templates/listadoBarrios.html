@@ -1,15 +1,48 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #20d8b9;
+  }
+
+  td {
+    background-color: #1eeefd;
+  }
+
+  a {
+    text-decoration: none;
+  }
+</style>
+
+
 <h3>{{ mititulo }}</h3>
 <hr>
 
-<ul>
-
-{% for b in barrios %}
-
-  <li>{{b}}</li>
-  <br>
-
-{% endfor %}
-
-</ul>
-[<a href="{% url 'index' %}">inicio</a>]
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Número de Viviendas</th>
+    <th>Número de Parques</th>
+    <th>Número de Edificios</th>
+  </tr>
+  {% for b in barrios %}
+  <tr>
+    <td>{{ b.nombre }}</td>
+    <td>{{ b.viviendas }}</td>
+    <td>{{ b.num_parques }}</td>
+    <td>{{ b.edificios }}</td>
+  </tr>
+  {% endfor %}
+</table>
 <hr>
+
+[<a href="{% url 'index' %}">inicio</a>]

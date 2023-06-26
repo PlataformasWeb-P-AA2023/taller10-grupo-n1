@@ -1,29 +1,50 @@
-<h3>{{ mititulo }}</h3>
-      
-    {% for p in parroquias %}
-          
-      <br/>
-      <b>{{p}}</b> - 
-      [<a href="{% url 'editarParroquia' p.id %}">editar</a>]  
-      <br/>
-      <ul>
-      {% for b in p.parroquiass.all %}
-          <li>
-              Barrio: {{b.nombre}} - 
-              [<a href="{% url 'editarBarrio' b.id %}">editar</a>] - 
-              [<a href="{% url 'eliminarBarrio' b.id %}" 
-              onclick="return confirm('¿Está seguro de la eliminación?')" >
-              eliminar</a>]
-              <br/>  
-          </li>
-      {% endfor %}
-      </ul>
-      [<a href="{% url 'crearBarrio' p.id%}">agergar barrio</a>]
-      <br/>
-    {% endfor %}
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+  
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+  
+    th {
+      background-color: #20d8b9;
+    }
+  
+    td {
+      background-color: #1eeefd;
+    }
 
-    <br />
-    [<a href="{% url 'crearParroquia' %}">agregar parroquia</a>]
-    <br/>
-    <br/>
-    [<a href="{% url 'index' %}">inicio</a>]
+    a{
+        text-decoration: none;
+    }
+</style>
+
+<h3>{{ mititulo }}</h3>
+
+<table>
+  {% for p in parroquias %}
+  <tr>
+    <th colspan="4"><b>{{ p.nombre }} - {{ p.tipo }}</b> - 
+    [<a href="{% url 'editarParroquia' p.id %}">Editar Parroquia</a>]
+    </th>
+  </tr>  
+  {% for b in p.parroquiass.all %}
+  <tr>
+    <td>Barrio: {{ b.nombre }}</td>
+    <td>[<a href="{% url 'editarBarrio' b.id %}">editar</a>]</td>
+    <td>[<a href="{% url 'eliminarBarrio' b.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>]</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td colspan="3">[<a href="{% url 'crearBarrio' p.id %}">Agregar Barrio</a>]</td>
+  </tr>
+  {% endfor %}  
+</table>
+<hr>
+[<a href="{% url 'crearParroquia' %}">Agregar Parroquia</a>]
+
+<hr>
+[<a href="{% url 'index' %}">inicio</a>]
