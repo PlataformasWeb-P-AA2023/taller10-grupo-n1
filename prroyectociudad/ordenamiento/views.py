@@ -6,6 +6,11 @@ from ordenamiento.models import *
 
 from ordenamiento.forms import *
 
+def index(request):
+    
+    return render(request, 'index.html')
+
+
 def listadoParroquias(request):
     
     parroquias = Parroquia.objects.all()
