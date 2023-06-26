@@ -1,0 +1,27 @@
+<h3>{{ mititulo }}</h3>
+      
+    {% for p in parroquias %}
+          
+      <br/>
+      <b>{{p}}</b> - 
+      [<a href="{% url 'editarParroquia' p.id %}">editar</a>]  
+      <br/>
+      <ul>
+      {% for b in p.parroquiass.all %}
+          <li>
+              Barrio: {{b.nombre}} - 
+              [<a href="{% url 'editarBarrio' b.id %}">editar</a>] - 
+              [<a href="{% url 'eliminarBarrio' b.id %}" 
+              onclick="return confirm('¿Está seguro de la eliminación?')" >
+              eliminar</a>]
+              <br/>  
+          </li>
+      {% endfor %}
+      </ul>
+      [<a href="{% url 'crearBarrio' p.id%}">agergar barrio</a>]
+      <br/>
+    {% endfor %}
+
+    <br />
+    [<a href="{% url 'crearParroquia' %}">agregar parroquia</a>]
+         
